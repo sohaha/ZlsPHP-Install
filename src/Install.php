@@ -195,7 +195,7 @@ class Install
             $dir = $this->tmpDir . $v;
             $i++;
         }
-        if ($i === 1) {
+        if ($i === 1 && is_dir($dir)) {
             $this->tmpDir = $dir;
         }
     }
