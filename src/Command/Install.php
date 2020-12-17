@@ -18,20 +18,6 @@ class Install extends \Zls\Command\Command
         return '下载安装压缩包';
     }
 
-    private function getReleases()
-    {
-        $http = new Http();
-        foreach (['', 'https://github.73zls.com/'] as $v) {
-            $http->get($v . 'https://api.github.com/repos/sohaha/zzz/releases/latest');
-            $data = $http->data(true);
-            $zipUrl = Z::arrayGet($data, 'zipball_url');
-            if ($zipUrl) {
-                break;
-            }
-        }
-        return $zipUrl;
-    }
-
     public function execute($args)
     {
         foreach ($args as $k => $v) {
@@ -48,7 +34,6 @@ class Install extends \Zls\Command\Command
         $url = Z::arrayGet($data, 'url');
         if (!$url) {
             $this->printStrN('[ Process ]: 获取文件地址...');
-            //$url = $this->getReleases();
         }
         $d = new In($url);
         $d->silentRun($data);
