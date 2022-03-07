@@ -34,11 +34,6 @@ class Util
         if (is_null($proxy)) {
             $canProxy = self::canProxy();
             $proxy =  $canProxy ? array_merge(self::$chinaCDN, ['']) : array_merge([''], self::$chinaCDN);
-
-            if($canProxy) {
-                var_dump('can proxy',$proxy);
-
-            }
         }
         $result = null;
         foreach ($proxy as $v) {
