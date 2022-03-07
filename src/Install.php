@@ -11,9 +11,9 @@ class Install
 {
     use Utils;
 
+    public $http;
     private $url;
     private $md5;
-    private $http;
     private $dir;
     private $tmpDir;
     private $packFilePath;
@@ -115,8 +115,8 @@ class Install
 
     private function download()
     {
-        return Util::GithubProcess($this->url, function () {
-            $this->http->get($this->url, [], [], 1);
+        return Util::GithubProcess($this->url, function ($url) {
+            $this->http->get($url, [], [], 1);
             $code = $this->http->code();
             return $code === 200;
         });
